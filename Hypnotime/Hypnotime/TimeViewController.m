@@ -17,12 +17,6 @@
     [[self view] setBackgroundColor:[UIColor greenColor]];
 }
 
-- (void) viewDidUnload
-{
-    [super viewDidUnload];
-    NSLog(@"Unloading TimeViewController's subviews");
-    timeLabel = nil;
-}
 
 -(id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
