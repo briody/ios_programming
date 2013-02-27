@@ -9,6 +9,36 @@
 #import "TimeViewController.h"
 
 @implementation TimeViewController
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    NSLog(@"TimeViewController loaded its view.");
+    [[self view] setBackgroundColor:[UIColor greenColor]];
+}
+
+- (void) viewDidUnload
+{
+    [super viewDidUnload];
+    NSLog(@"Unloading TimeViewController's subviews");
+    timeLabel = nil;
+}
+
+-(id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
+{
+    
+    NSBundle *appBundle = [NSBundle mainBundle];
+    self = [super initWithNibName:@"TimeViewController" bundle:appBundle];
+    
+    if(self) {
+        UITabBarItem *tbi = [self tabBarItem];
+        [tbi setTitle:@"Time" ];
+        UIImage *i = [UIImage imageNamed:@"Time.png"];
+        [tbi setImage:i];
+    }
+    return self;
+}
+
  - (IBAction)showCurrentTime:(id)sender
 {
     NSDate *now = [NSDate date];
