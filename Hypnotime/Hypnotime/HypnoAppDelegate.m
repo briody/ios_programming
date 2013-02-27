@@ -25,7 +25,11 @@
     
     TimeViewController *tvc = [[TimeViewController alloc] init];
     
+    
+    
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    
     
     NSArray *viewControllers = [NSArray arrayWithObjects:hvc, tvc, nil];
     [tabBarController setViewControllers:viewControllers];

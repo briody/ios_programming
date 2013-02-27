@@ -17,6 +17,18 @@
     [[self view] setBackgroundColor:[UIColor greenColor]];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    NSLog(@"CurrentTimeViewController Will appear");
+    [super viewWillAppear:animated];
+    [self showCurrentTime:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"CurrentTimeViewController will disappear");
+    [super viewWillDisappear:animated];
+}
 
 -(id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
