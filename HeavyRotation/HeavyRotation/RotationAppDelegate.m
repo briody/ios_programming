@@ -1,44 +1,41 @@
 //
-//  HypnoAppDelegate.m
-//  Hypnotime
+//  RotationAppDelegate.m
+//  HeavyRotation
 //
-//  Created by briody on 2/25/13.
+//  Created by briody on 2/28/13.
 //  Copyright (c) 2013 Briody. All rights reserved.
 //
 
-#import "HypnoAppDelegate.h"
-#import "HypnosisViewController.h"
-#import "TimeViewController.h"
+#import "RotationAppDelegate.h"
 
-
-@implementation HypnoAppDelegate
-
-@synthesize window = _window;
+@implementation RotationAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+    //Get the device object
+    UIDevice *device = [UIDevice currentDevice];
     
-    HypnosisViewController *hvc = [[HypnosisViewController alloc] init];
+    //Tell it to start monitoring the accelerometer for orientation
+    [device beginGeneratingDeviceOrientationNotifications];
     
-    TimeViewController *tvc = [[TimeViewController alloc] init];
+    //Get te notification center for the app
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
-    
-    
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    
-    
-    
-    NSArray *viewControllers = [NSArray arrayWithObjects:hvc, tvc, nil];
-    [tabBarController setViewControllers:viewControllers];
-    
-    [[self window] setRootViewController:tabBarController];
+    //Add yourself as an observer
+    [nc addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:device];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)orientationChanged:(NSNotification *)note
+{
+    //Log the constant that represents the current orientation
+    NSLog(@"orientationChanged: %d", [[note object] orientation]);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
