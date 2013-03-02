@@ -18,4 +18,5 @@
     return (x == UIInterfaceOrientationPortrait
             || UIInterfaceOrientationIsLandscape(x));
 }
+
 @end
