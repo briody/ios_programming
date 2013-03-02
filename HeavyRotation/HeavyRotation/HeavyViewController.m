@@ -10,6 +10,33 @@
 
 @implementation HeavyViewController
 
+
+//Set the autoresizing mask programmatically
+//Views aren't created when controller is initialized
+//So we want to do this in ViewDidLoad not in init
+
+//Silver Challenge
+- (void)viewDidLoad
+{
+    //The Struts actually 
+    //Image view
+    [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight
+     | UIViewAutoresizingFlexibleWidth];
+    
+    //Slider
+    [_topSlider setAutoresizingMask:
+     UIViewAutoresizingFlexibleBottomMargin
+     | UIViewAutoresizingFlexibleWidth];
+    
+    //Left Button
+    [_leftButton setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin
+     | UIViewAutoresizingFlexibleTopMargin];
+    
+    //Right Button
+    [_rightButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin
+     | UIViewAutoresizingFlexibleTopMargin];
+}
+
 //Deprecated
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)x
 {
@@ -18,5 +45,8 @@
     return (x == UIInterfaceOrientationPortrait
             || UIInterfaceOrientationIsLandscape(x));
 }
+
+
+
 
 @end
