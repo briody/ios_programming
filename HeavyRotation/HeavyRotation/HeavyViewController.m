@@ -16,8 +16,15 @@
 //So we want to do this in ViewDidLoad not in init
 
 //Silver Challenge
+
+CGFloat xMargin = 20.0;
+
 - (void)viewDidLoad
 {
+    //Gold Challenge
+    CGRect bounds = [[self view] bounds];
+    [_moveButton setCenter:CGPointMake(xMargin + _moveButton.frame.size.width/2.0, bounds.size.height /2.0)];
+    
     //The Struts actually 
     //Image view
     [_imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight
@@ -46,6 +53,17 @@
             || UIInterfaceOrientationIsLandscape(x));
 }
 
+//Gold Challenge
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)x duration:(NSTimeInterval)duration
+{
+    CGRect bounds = [[self view] bounds];
+    // If the orientation is rotating to Portrait mode....
+    if (UIInterfaceOrientationIsPortrait(x)) {
+        [_moveButton setCenter:CGPointMake(xMargin + _moveButton.frame.size.width/2.0, bounds.size.height /2.0)];
+    } else {
+        [_moveButton setCenter:CGPointMake(bounds.size.width - xMargin - _moveButton.frame.size.width/2.0, bounds.size.height / 2.0)];
+    }
+}
 
 
 
