@@ -22,18 +22,38 @@
     //Tell it to start monitoring the accelerometer for orientation
     [device beginGeneratingDeviceOrientationNotifications];
     
+    //Bronze Challenge
+    [device setProximityMonitoringEnabled:YES];
+    
     //Get te notification center for the app
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
     //Add yourself as an observer
     [nc addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:device];
     
-    HeavyViewController *hvc = [[HeavyViewController alloc]init];
+    //Bronze Challenge
+    [nc addObserver:self selector:@selector(proximityChanged:)
+               name:@"UIDeviceProximityStateDidChangeNotification" object:nil];
     
+
+    
+    HeavyViewController *hvc = [[HeavyViewController alloc]init];
+    [[self window] setRootViewController:hvc];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+//Bronze Challenge
+- (void)proximityChanged:(NSNotification *)note
+{
+    if ([[UIDevice currentDevice] proximityState] == YES) {
+        NSLog(@"Device is close to user.");
+        self.window.backgroundColor = [UIColor whiteColor];
+    }
+    else
+        NSLog(@"Device is ~not~ closer to user.");
 }
 
 - (void)orientationChanged:(NSNotification *)note
