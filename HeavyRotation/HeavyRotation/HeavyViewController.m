@@ -44,14 +44,25 @@ CGFloat yMargin = 30.0;
      | UIViewAutoresizingFlexibleTopMargin];
 }
 
-//Deprecated
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)x
-{
-    //Return YES if incoming orientation is Portrait
-    //or either of the Landscapes, otherwise, return NO
-    return (x == UIInterfaceOrientationPortrait
-            || UIInterfaceOrientationIsLandscape(x));
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+
+
+////Deprecated
+//-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)x
+//{
+//    //Return YES if incoming orientation is Portrait
+//    //or either of the Landscapes, otherwise, return NO
+//    return (x == UIInterfaceOrientationPortrait
+//            || UIInterfaceOrientationIsLandscape(x));
+//}
 
 //Gold Challenge
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)x duration:(NSTimeInterval)duration
