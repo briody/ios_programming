@@ -20,6 +20,7 @@
 CGFloat xMargin = 20.0;
 CGFloat yMargin = 30.0;
 
+//viewWillAppear
 - (void)viewDidLoad
 {
     //Gold Challenge
